@@ -3,77 +3,458 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ev</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
+    <title>Data Explorer</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://felt.com/js-sdk/v2.3.2/embed.js"></script>
 </head>
 <body>
-    <div class="app-container">
-        <!-- Header -->
-        <header class="app-header">
-            <h1>Ev</h1>
-            <p class="subtitle">Explore data with id filtering</p>
-        </header>
-
-        <!-- Stats Dashboard -->
-        <div class="stats-row">
-            <div class="stat-card">
-                <div class="stat-label">Total Features</div>
-                <div class="stat-value" id="stat-total">-</div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-label">Filtered</div>
-                <div class="stat-value" id="stat-filtered">-</div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-label">Last Updated</div>
-                <div class="stat-value" id="stat-time" style="font-size: 1rem;">-</div>
-            </div>
+    <div class="sidebar">
+        <div class="header">
+            
+            <h1>Data Explorer</h1>
+            <p class="description">Explore and filter geographic data</p>
         </div>
 
-        <!-- Main Content -->
-        <div class="main-content">
-            <!-- Sidebar with Controls -->
-            <aside class="sidebar">
-                <!-- Filters -->
-                <div class="panel">
-                    <h2>Filters</h2>
-                    <div class="filter-group">
-                        <label class="filter-label">
-                            <span>Id</span>
-                            <span class="badge" id="filter-value">78795</span>
-                        </label>
+        <div class="filters-section">
+<div class="filter-group">
+<label class="filter-label">Id</label>
+
+                    <div class="filter-range">
+                        <span class="range-label" id="filter-0-min">1</span>
                         <input type="range"
-                               id="filter-slider"
-                               class="slider"
-                               min="0"
-                               max="10"
-                               step="0.1"
-                               value="78795">
+                               id="filter-0"
+                               class="filter-slider"
+                               data-attribute="id"
+                               min="1"
+                               max="536"
+                               value="1"
+                               step="5.35">
+                        <span class="range-label" id="filter-0-max">536</span>
                     </div>
-                </div>
+                    <div class="range-display">
+                        <span id="filter-0-value">1</span> - 536
+                    </div>
+                
+</div>
+<div class="filter-group">
+<label class="filter-label">Total Population</label>
 
-                <!-- Selected Feature Info -->
-                <div class="panel" id="feature-panel" style="display: none;">
-                    <h2>Feature Details</h2>
-                    <div id="feature-info"></div>
-                </div>
-            </aside>
+                    <div class="filter-range">
+                        <span class="range-label" id="filter-1-min">276</span>
+                        <input type="range"
+                               id="filter-1"
+                               class="filter-slider"
+                               data-attribute="total_population"
+                               min="276"
+                               max="2745"
+                               value="276"
+                               step="24.69">
+                        <span class="range-label" id="filter-1-max">2745</span>
+                    </div>
+                    <div class="range-display">
+                        <span id="filter-1-value">276</span> - 2745
+                    </div>
+                
+</div>
+<div class="filter-group">
+<label class="filter-label">Total Households</label>
 
-            <!-- Map Container -->
-            <main class="map-container">
-                <div id="map"></div>
-            </main>
+                    <div class="filter-range">
+                        <span class="range-label" id="filter-2-min">0</span>
+                        <input type="range"
+                               id="filter-2"
+                               class="filter-slider"
+                               data-attribute="total_households"
+                               min="0"
+                               max="1596"
+                               value="0"
+                               step="15.96">
+                        <span class="range-label" id="filter-2-max">1596</span>
+                    </div>
+                    <div class="range-display">
+                        <span id="filter-2-value">0</span> - 1596
+                    </div>
+                
+</div>
+<div class="filter-group">
+<label class="filter-label">Pop Density</label>
+
+                    <div class="filter-range">
+                        <span class="range-label" id="filter-3-min">0.61</span>
+                        <input type="range"
+                               id="filter-3"
+                               class="filter-slider"
+                               data-attribute="pop_density"
+                               min="0.61"
+                               max="229.8"
+                               value="0.61"
+                               step="2.2919">
+                        <span class="range-label" id="filter-3-max">229.8</span>
+                    </div>
+                    <div class="range-display">
+                        <span id="filter-3-value">0.61</span> - 229.8
+                    </div>
+                
+</div>
+<div class="filter-group">
+<label class="filter-label">Dist Nearest Mi</label>
+
+                    <div class="filter-range">
+                        <span class="range-label" id="filter-4-min">0.05</span>
+                        <input type="range"
+                               id="filter-4"
+                               class="filter-slider"
+                               data-attribute="dist_nearest_mi"
+                               min="0.05"
+                               max="5.17"
+                               value="0.05"
+                               step="0.0512">
+                        <span class="range-label" id="filter-4-max">5.17</span>
+                    </div>
+                    <div class="range-display">
+                        <span id="filter-4-value">0.05</span> - 5.17
+                    </div>
+                
+</div>
+<div class="filter-group">
+<label class="filter-label">Dist Score</label>
+
+                    <div class="filter-range">
+                        <span class="range-label" id="filter-5-min">0.8</span>
+                        <input type="range"
+                               id="filter-5"
+                               class="filter-slider"
+                               data-attribute="dist_score"
+                               min="0.8"
+                               max="83.1"
+                               value="0.8"
+                               step="0.823">
+                        <span class="range-label" id="filter-5-max">83.1</span>
+                    </div>
+                    <div class="range-display">
+                        <span id="filter-5-value">0.8</span> - 83.1
+                    </div>
+                
+</div>
+<div class="filter-group">
+<label class="filter-label">Density Score</label>
+
+                    <div class="filter-range">
+                        <span class="range-label" id="filter-6-min">1.2</span>
+                        <input type="range"
+                               id="filter-6"
+                               class="filter-slider"
+                               data-attribute="density_score"
+                               min="1.2"
+                               max="100"
+                               value="1.2"
+                               step="0.988">
+                        <span class="range-label" id="filter-6-max">100</span>
+                    </div>
+                    <div class="range-display">
+                        <span id="filter-6-value">1.2</span> - 100
+                    </div>
+                
+</div>
+<div class="filter-group">
+<label class="filter-label">Vehicle Score</label>
+
+                    <div class="filter-range">
+                        <span class="range-label" id="filter-7-min">0</span>
+                        <input type="range"
+                               id="filter-7"
+                               class="filter-slider"
+                               data-attribute="vehicle_score"
+                               min="0"
+                               max="100"
+                               value="0"
+                               step="1.0">
+                        <span class="range-label" id="filter-7-max">100</span>
+                    </div>
+                    <div class="range-display">
+                        <span id="filter-7-value">0</span> - 100
+                    </div>
+                
+</div>
+<div class="filter-group">
+<label class="filter-label">Landuse Score</label>
+
+                    <div class="filter-range">
+                        <span class="range-label" id="filter-8-min">0</span>
+                        <input type="range"
+                               id="filter-8"
+                               class="filter-slider"
+                               data-attribute="landuse_score"
+                               min="0"
+                               max="40"
+                               value="0"
+                               step="0.4">
+                        <span class="range-label" id="filter-8-max">40</span>
+                    </div>
+                    <div class="range-display">
+                        <span id="filter-8-value">0</span> - 40
+                    </div>
+                
+</div>
+<div class="filter-group">
+<label class="filter-label">Suitability Score</label>
+
+                    <div class="filter-range">
+                        <span class="range-label" id="filter-9-min">6.5</span>
+                        <input type="range"
+                               id="filter-9"
+                               class="filter-slider"
+                               data-attribute="suitability_score"
+                               min="6.5"
+                               max="59.6"
+                               value="6.5"
+                               step="0.531">
+                        <span class="range-label" id="filter-9-max">59.6</span>
+                    </div>
+                    <div class="range-display">
+                        <span id="filter-9-value">6.5</span> - 59.6
+                    </div>
+                
+</div>
+</div>
+
+        <div class="footer">
+            <div class="powered-by">
+                Powered by <a href="https://felt.com" target="_blank">Felt</a>
+            </div>
         </div>
-
-        <!-- Footer -->
-        <footer class="footer">
-            <p>Built with <a href="https://felt.com" target="_blank">Felt</a></p>
-        </footer>
     </div>
 
-    <script type="module" src="app.js"></script>
+    <div id="map"></div>
+
+    <script>
+        // Initialize Felt map
+        let felt;
+        let dataLayer;
+
+        async function initMap() {
+            felt = await Felt.embed('#map', {
+                mapId: '45JaGB9CDS9CW7mvDXifOC8A'
+            });
+
+            // Wait for map to be ready
+            await felt.whenReady();
+
+            // Get the data layer
+            const layers = await felt.getLayers();
+            dataLayer = layers.find(layer => layer.name.includes('data') || layer.name.includes('Data'));
+
+            if (!dataLayer) {
+                console.error('Could not find data layer');
+                return;
+            }
+
+            console.log('Map initialized with layer:', dataLayer.name);
+
+            // Initialize SDK features
+            
+            // Layer toggle
+            // Already handled by Felt's built-in UI
+        
+
+            // Click popup
+            felt.onPointerClick(async (event) => {
+                if (event.features && event.features.length > 0) {
+                    const feature = event.features[0];
+                    console.log('Clicked feature:', feature.properties);
+                    // Felt's built-in popup will show
+                }
+            });
+        
+
+            // Initialize filters
+            initFilters();
+        }
+
+        
+        function initFilters() {
+            
+            // Slider filter: id
+            const slider0 = document.getElementById('filter-0');
+            const valueDisplay0 = document.getElementById('filter-0-value');
+
+            slider0.addEventListener('input', (e) => {
+                valueDisplay0.textContent = parseFloat(e.target.value).toFixed(2);
+                applyFilters();
+            });
+                
+
+            // Slider filter: total_population
+            const slider1 = document.getElementById('filter-1');
+            const valueDisplay1 = document.getElementById('filter-1-value');
+
+            slider1.addEventListener('input', (e) => {
+                valueDisplay1.textContent = parseFloat(e.target.value).toFixed(2);
+                applyFilters();
+            });
+                
+
+            // Slider filter: total_households
+            const slider2 = document.getElementById('filter-2');
+            const valueDisplay2 = document.getElementById('filter-2-value');
+
+            slider2.addEventListener('input', (e) => {
+                valueDisplay2.textContent = parseFloat(e.target.value).toFixed(2);
+                applyFilters();
+            });
+                
+
+            // Slider filter: pop_density
+            const slider3 = document.getElementById('filter-3');
+            const valueDisplay3 = document.getElementById('filter-3-value');
+
+            slider3.addEventListener('input', (e) => {
+                valueDisplay3.textContent = parseFloat(e.target.value).toFixed(2);
+                applyFilters();
+            });
+                
+
+            // Slider filter: dist_nearest_mi
+            const slider4 = document.getElementById('filter-4');
+            const valueDisplay4 = document.getElementById('filter-4-value');
+
+            slider4.addEventListener('input', (e) => {
+                valueDisplay4.textContent = parseFloat(e.target.value).toFixed(2);
+                applyFilters();
+            });
+                
+
+            // Slider filter: dist_score
+            const slider5 = document.getElementById('filter-5');
+            const valueDisplay5 = document.getElementById('filter-5-value');
+
+            slider5.addEventListener('input', (e) => {
+                valueDisplay5.textContent = parseFloat(e.target.value).toFixed(2);
+                applyFilters();
+            });
+                
+
+            // Slider filter: density_score
+            const slider6 = document.getElementById('filter-6');
+            const valueDisplay6 = document.getElementById('filter-6-value');
+
+            slider6.addEventListener('input', (e) => {
+                valueDisplay6.textContent = parseFloat(e.target.value).toFixed(2);
+                applyFilters();
+            });
+                
+
+            // Slider filter: vehicle_score
+            const slider7 = document.getElementById('filter-7');
+            const valueDisplay7 = document.getElementById('filter-7-value');
+
+            slider7.addEventListener('input', (e) => {
+                valueDisplay7.textContent = parseFloat(e.target.value).toFixed(2);
+                applyFilters();
+            });
+                
+
+            // Slider filter: landuse_score
+            const slider8 = document.getElementById('filter-8');
+            const valueDisplay8 = document.getElementById('filter-8-value');
+
+            slider8.addEventListener('input', (e) => {
+                valueDisplay8.textContent = parseFloat(e.target.value).toFixed(2);
+                applyFilters();
+            });
+                
+
+            // Slider filter: suitability_score
+            const slider9 = document.getElementById('filter-9');
+            const valueDisplay9 = document.getElementById('filter-9-value');
+
+            slider9.addEventListener('input', (e) => {
+                valueDisplay9.textContent = parseFloat(e.target.value).toFixed(2);
+                applyFilters();
+            });
+                
+
+            // Apply initial filters
+            applyFilters();
+        }
+
+        async function applyFilters() {
+            if (!dataLayer) return;
+
+            const filters = [];
+
+            
+            // Apply slider filter: id
+            const sliderValue0 = parseFloat(document.getElementById('filter-0').value);
+            filters.push(['id', 'gte', sliderValue0]);
+                
+
+            // Apply slider filter: total_population
+            const sliderValue1 = parseFloat(document.getElementById('filter-1').value);
+            filters.push(['total_population', 'gte', sliderValue1]);
+                
+
+            // Apply slider filter: total_households
+            const sliderValue2 = parseFloat(document.getElementById('filter-2').value);
+            filters.push(['total_households', 'gte', sliderValue2]);
+                
+
+            // Apply slider filter: pop_density
+            const sliderValue3 = parseFloat(document.getElementById('filter-3').value);
+            filters.push(['pop_density', 'gte', sliderValue3]);
+                
+
+            // Apply slider filter: dist_nearest_mi
+            const sliderValue4 = parseFloat(document.getElementById('filter-4').value);
+            filters.push(['dist_nearest_mi', 'gte', sliderValue4]);
+                
+
+            // Apply slider filter: dist_score
+            const sliderValue5 = parseFloat(document.getElementById('filter-5').value);
+            filters.push(['dist_score', 'gte', sliderValue5]);
+                
+
+            // Apply slider filter: density_score
+            const sliderValue6 = parseFloat(document.getElementById('filter-6').value);
+            filters.push(['density_score', 'gte', sliderValue6]);
+                
+
+            // Apply slider filter: vehicle_score
+            const sliderValue7 = parseFloat(document.getElementById('filter-7').value);
+            filters.push(['vehicle_score', 'gte', sliderValue7]);
+                
+
+            // Apply slider filter: landuse_score
+            const sliderValue8 = parseFloat(document.getElementById('filter-8').value);
+            filters.push(['landuse_score', 'gte', sliderValue8]);
+                
+
+            // Apply slider filter: suitability_score
+            const sliderValue9 = parseFloat(document.getElementById('filter-9').value);
+            filters.push(['suitability_score', 'gte', sliderValue9]);
+                
+
+            // Combine filters with AND logic
+            let combinedFilter = filters[0];
+            for (let i = 1; i < filters.length; i++) {
+                combinedFilter = [combinedFilter, 'and', filters[i]];
+            }
+
+            console.log('Applying filter:', combinedFilter);
+
+            try {
+                await felt.setLayerFilters({
+                    layerId: dataLayer.id,
+                    filters: combinedFilter
+                });
+            } catch (error) {
+                console.error('Error applying filter:', error);
+            }
+        }
+        
+
+        // Initialize on page load
+        initMap();
+    </script>
 </body>
 </html>
